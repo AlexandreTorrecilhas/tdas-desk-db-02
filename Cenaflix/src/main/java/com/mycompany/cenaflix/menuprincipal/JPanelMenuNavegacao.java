@@ -7,9 +7,9 @@ import javax.swing.JButton;
 
 class JPanelMenuNavegacao extends AbsJPanelGrid {
     
-    JButton btnAdicionarFilme = new JButton("Adicionar Filme");
-    JButton btnConsultarFilme = new JButton("Consultar/Atualizar Filme");
-    JButton btnExcluirFilme = new JButton("Excluir Filme");
+    private JButton btnAdicionarFilme = new JButton("Adicionar Filme");
+    private JButton btnConsultarFilme = new JButton("Consultar/Atualizar Filme");
+    private JButton btnExcluirFilme = new JButton("Excluir Filme");
     
     public JPanelMenuNavegacao(){
         this.add(btnAdicionarFilme, this.getGridBagConstraints(0, 0));
