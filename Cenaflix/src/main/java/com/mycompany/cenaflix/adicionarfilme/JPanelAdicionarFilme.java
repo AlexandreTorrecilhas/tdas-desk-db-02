@@ -8,6 +8,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 //Pacotes AWT
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 //Pacotes util
 import java.util.LinkedHashMap;
 
@@ -34,8 +36,8 @@ public class JPanelAdicionarFilme extends AbsJPanelGrid {
     private void adicionarElementosJPanel(){
         for(int linha = 0; linha <= 2; linha++ ){
             for(int coluna = 0; coluna <= 1; coluna++){
-                this.add(this.mapJLabel.get(this.arrLblJLabel[linha]), this.getGridBagConstraints(coluna, linha));
-                this.add(this.mapJTextField.get(this.arrTxtJTextField[linha]), this.getGridBagConstraints(coluna + 1, linha));
+                this.add(this.mapJLabel.get(this.arrLblJLabel[linha]), this.getGridBagConstraintsIpa(coluna, linha));
+                this.add(this.mapJTextField.get(this.arrTxtJTextField[linha]), this.getGridBagConstraintsIpa(coluna + 1, linha));
             }
         }
     }
@@ -62,9 +64,9 @@ public class JPanelAdicionarFilme extends AbsJPanelGrid {
     }
 
     private void setElementosMapJTextField(){
-        this.mapJTextField.put("txtNomeFilme", addJTextField(100,20));
+        this.mapJTextField.put("txtNomeFilme", addJTextField(200,20));
         this.mapJTextField.put("txtDataLancamento", addJTextField(50,20));
-        this.mapJTextField.put("txtGenero", addJTextField(100,20));
+        this.mapJTextField.put("txtGenero", addJTextField(200,20));
 
     }
 
@@ -72,5 +74,4 @@ public class JPanelAdicionarFilme extends AbsJPanelGrid {
         this.mapJButtons.put("btnCadastrarFilme", addJButton(30,30,"Cadastrar Filme"));
         this.mapJButtons.put("btnLimparCampos", addJButton(30,30,"Limpar Campos"));
     }
-    
 }

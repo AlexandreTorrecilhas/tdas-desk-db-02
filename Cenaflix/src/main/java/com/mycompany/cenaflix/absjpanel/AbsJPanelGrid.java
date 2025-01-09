@@ -26,8 +26,8 @@ public abstract class AbsJPanelGrid extends JPanel {
         regra.gridx = coluna;
         regra.gridy = linha;
         regra.insets = new Insets(5,5,5,5);
-        regra.weightx = 1.0;
         regra.fill = GridBagConstraints.HORIZONTAL;
+        regra.anchor = GridBagConstraints.WEST;
         return regra;
     }
 }
