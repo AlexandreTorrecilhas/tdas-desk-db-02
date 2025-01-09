@@ -9,10 +9,12 @@ import java.awt.BorderLayout;
 class JPanelMenuPrincipal extends AbsJPanelGrid {
     
     private final JPanelMenuNavegacao jPanelMenuNavegcao = new JPanelMenuNavegacao();
+    private final JPanelContainerCardLayout jPanelContainerCardLayout = new JPanelContainerCardLayout();
     
     public JPanelMenuPrincipal(){
         this.setLayout(new BorderLayout());
         this.add(jPanelMenuNavegcao, BorderLayout.NORTH);
+        this.add(jPanelContainerCardLayout, BorderLayout.CENTER);
     }
 
     public JPanelMenuNavegacao getJPanelMenuNavegacao() {
