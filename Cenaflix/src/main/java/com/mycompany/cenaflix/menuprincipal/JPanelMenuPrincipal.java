@@ -2,14 +2,19 @@ package com.mycompany.cenaflix.menuprincipal;
 
 //Pacotes do Projeto
 import com.mycompany.cenaflix.absjpanel.AbsJPanelGrid;
-//Pacotes Swing
+import com.mycompany.cenaflix.adicionarfilme.JPanelAdicionarFilme;
+//Pacotes AWT
+import java.awt.BorderLayout;
 
 
 public class JPanelMenuPrincipal extends AbsJPanelGrid {
     
     
     public JPanelMenuPrincipal(){
-        this.add(new JPanelMenuNavegacao());
+        this.setLayout(new BorderLayout());
+        this.add(new JPanelMenuNavegacao(), BorderLayout.NORTH);
+        this.add(new JPanelAdicionarFilme(), BorderLayout.CENTER);
+
     }
     
 }

@@ -1,25 +1,45 @@
 package com.mycompany.cenaflix.adicionarfilme;
 
+//Pacotes do Projeto
+import com.mycompany.cenaflix.absjpanel.AbsJPanelGrid;
 //Pacotes Swing 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 //Pacotes AWT
 import java.awt.Dimension;
+//Pacotes util
+import java.util.LinkedHashMap;
 
-public class JPanelAdicionarFilme {
+public class JPanelAdicionarFilme extends AbsJPanelGrid {
     
     //JLabels
-    JLabel lblNome = new JLabel("Nome do Filme: ");
-    JLabel lblDataLancamento = new JLabel("Data de Lançamento: ");
-    JLabel lblGenero = new JLabel("Gnero: ");
+    private LinkedHashMap<String, JLabel> mapJLabel = new LinkedHashMap();
     //JTextFields
-    JTextField nomeFilme = addJTextField(100,20);
-    JTextField dataLancamento = addJTextField(50,20);
-    JTextField genero = addJTextField(100,20);
+    private LinkedHashMap<String, JTextField> mapJTextField = new LinkedHashMap();
     //JButtons
-    JButton btnCadastrarFilme = addJButton(30,30,"Cadastrar Filme");
-    
+    private LinkedHashMap<String, JButton> mapJButtons = new LinkedHashMap();
+    //Arrays que servirão como chaves para os loops nos maps
+    private final String[] arrLblJLabel = {"lblNome", "lblDataLancamento", "lblGenero"};
+    private final String[] arrTxtJTextField = {"txtNomeFilme", "txtDataLancamento", "txtGenero"};
+
+    public JPanelAdicionarFilme(){
+        super();
+        this.setElementosMapJLabel();
+        this.setElementosMapJTextField();
+        this.setElementosMapJButton();
+        adicionarElementosJPanel();
+    }
+
+    private void adicionarElementosJPanel(){
+        for(int linha = 0; linha <= 2; linha++ ){
+            for(int coluna = 0; coluna <= 1; coluna++){
+                this.add(this.mapJLabel.get(this.arrLblJLabel[linha]), this.getGridBagConstraints(coluna, linha));
+                this.add(this.mapJTextField.get(this.arrTxtJTextField[linha]), this.getGridBagConstraints(coluna + 1, linha));
+            }
+        }
+    }
+
     private JButton addJButton(int largura, int altura, String texto){
         JButton novoBotao = new JButton();
         Dimension tamanho = new Dimension(largura, altura);
@@ -30,8 +50,27 @@ public class JPanelAdicionarFilme {
     private JTextField addJTextField(int largura, int altura){
         Dimension tamanho = new Dimension(largura, altura);
         JTextField campoTexto = new JTextField();
-        campoTexto.setSize(tamanho);
+        campoTexto.setPreferredSize(tamanho);
+        campoTexto.setMaximumSize(tamanho);
         return campoTexto;
+    }
+
+    private void setElementosMapJLabel(){
+        this.mapJLabel.put("lblNome", new JLabel("Nome do Filme: "));
+        this.mapJLabel.put("lblDataLancamento", new JLabel("Data de Lançamento: "));
+        this.mapJLabel.put("lblGenero", new JLabel("Genero: "));
+    }
+
+    private void setElementosMapJTextField(){
+        this.mapJTextField.put("txtNomeFilme", addJTextField(100,20));
+        this.mapJTextField.put("txtDataLancamento", addJTextField(50,20));
+        this.mapJTextField.put("txtGenero", addJTextField(100,20));
+
+    }
+
+    private void setElementosMapJButton(){
+        this.mapJButtons.put("btnCadastrarFilme", addJButton(30,30,"Cadastrar Filme"));
+        this.mapJButtons.put("btnLimparCampos", addJButton(30,30,"Limpar Campos"));
     }
     
 }
