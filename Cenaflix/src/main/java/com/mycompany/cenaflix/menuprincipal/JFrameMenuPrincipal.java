@@ -28,7 +28,7 @@ public class JFrameMenuPrincipal extends JFrame {
     
     private void setConfiguracoes(){
         this.setSize(tamanhoJFrame);
-        this.setLocation(coordenadas[0],coordenadas[1]);
+        this.setLocation(coordenadas[1],coordenadas[0]);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
@@ -43,7 +43,6 @@ public class JFrameMenuPrincipal extends JFrame {
     private void addActionListener(){
         mapJButton.get("btnAdicionarFilme").addActionListener(e ->{
             controlador.abrirTelaInserirFilme();
-            System.out.println("botão foi clicado");
         });
     }    
 }

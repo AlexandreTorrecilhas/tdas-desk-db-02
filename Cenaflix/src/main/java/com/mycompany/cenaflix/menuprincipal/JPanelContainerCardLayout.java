@@ -29,6 +29,7 @@ public class JPanelContainerCardLayout extends JPanel{
     
     private void setJPanel(){
         this.setLayout(new CardLayout());
+        this.setVisible(false);
     }
     
     private void setTelas(){
@@ -46,5 +47,4 @@ public class JPanelContainerCardLayout extends JPanel{
     public JPanelAdicionarFilme getjPanelAdicionarFilme(){
         return this.jPanelAdicionarFilme;
     }
-
 }

@@ -2,14 +2,14 @@ package com.mycompany.cenaflix.adicionarfilme;
 
 //Pacotes do Projeto
 import com.mycompany.cenaflix.absjpanel.AbsJPanelGrid;
+    //Pacotes Dao
+    import com.mycompany.cenaflix.dao.filme.FilmeDaoInsert;
 //Pacotes Swing 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 //Pacotes AWT
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 //Pacotes util
 import java.util.LinkedHashMap;
 
@@ -30,7 +30,7 @@ public class JPanelAdicionarFilme extends AbsJPanelGrid {
         this.setElementosMapJLabel();
         this.setElementosMapJTextField();
         this.setElementosMapJButton();
-        adicionarElementosJPanel();
+        this.adicionarElementosJPanel();
     }
 
     private void adicionarElementosJPanel(){
@@ -40,12 +40,16 @@ public class JPanelAdicionarFilme extends AbsJPanelGrid {
                 this.add(this.mapJTextField.get(this.arrTxtJTextField[linha]), this.getGridBagConstraintsIpa(coluna + 1, linha));
             }
         }
+        
+        this.add(this.mapJButtons.get("btnCadastrarFilme"), this.getGridBagConstraintsIpa(1, 3));
+        this.add(this.mapJButtons.get("btnLimparCampos"), this.getGridBagConstraintsIpa(2,3));
     }
 
     private JButton addJButton(int largura, int altura, String texto){
-        JButton novoBotao = new JButton();
+        JButton novoBotao = new JButton(texto);
         Dimension tamanho = new Dimension(largura, altura);
-        novoBotao.setSize(tamanho);
+        novoBotao.setPreferredSize(tamanho);
+        novoBotao.setMaximumSize(new Dimension(50,50));
         return novoBotao;
     }
     
@@ -71,7 +75,11 @@ public class JPanelAdicionarFilme extends AbsJPanelGrid {
     }
 
     private void setElementosMapJButton(){
-        this.mapJButtons.put("btnCadastrarFilme", addJButton(30,30,"Cadastrar Filme"));
+        this.mapJButtons.put("btnCadastrarFilme", addJButton(30,30,"Cadastrar"));
         this.mapJButtons.put("btnLimparCampos", addJButton(30,30,"Limpar Campos"));
+    }
+    
+    public LinkedHashMap getMapJTextField(){
+        return this.mapJTextField;
     }
 }
