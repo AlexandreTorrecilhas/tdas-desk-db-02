@@ -1,27 +1,24 @@
 package com.mycompany.cenaflix.menuprincipal;
 
 //Pacotes do Projeto
-import com.mycompany.cenaflix.adicionarfilme.JPanelAdicionarFilme;
+import com.mycompany.cenaflix.menuprincipal.JPanelContainerCardLayout;
 //Pacotes Swing
+import javax.smartcardio.Card;
 import javax.swing.JPanel;
 //Pacotes AWT
 import java.awt.BorderLayout;
-import javax.swing.JButton;
+import java.awt.CardLayout;
 
 class BotaoNavegacaoControlador {
+
+    private final JPanelContainerCardLayout jPanelContainerCardLayout;
+    private final CardLayout cardLayout = new CardLayout();
     
-    private JPanelAdicionarFilme jPanelAdicionarFilme = new JPanelAdicionarFilme();
-    
-    private JPanel jPanelMenuPrincipal;
-    
-    public BotaoNavegacaoControlador(JPanelMenuPrincipal jMenuPrincipal){
-        this.jPanelMenuPrincipal = jMenuPrincipal;
+    public BotaoNavegacaoControlador(JPanelContainerCardLayout jPanelContainerCardLayout){
+        this.jPanelContainerCardLayout = jPanelContainerCardLayout;
     }
     
     public void abrirTelaInserirFilme(){
-        this.jPanelMenuPrincipal.add(jPanelAdicionarFilme, BorderLayout.CENTER);
-        System.out.println("clicado aqui também");
-        this.jPanelMenuPrincipal.setVisible(true);
-        this.jPanelMenuPrincipal.add(new JButton("teste"));
+        this.jPanelContainerCardLayout.getLayout().show(jPanelContainerCardLayout, "JPanelAdicionarFilme");
     }
 }

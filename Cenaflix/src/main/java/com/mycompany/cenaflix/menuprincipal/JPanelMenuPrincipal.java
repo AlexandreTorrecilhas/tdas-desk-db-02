@@ -20,5 +20,8 @@ class JPanelMenuPrincipal extends AbsJPanelGrid {
     public JPanelMenuNavegacao getJPanelMenuNavegacao() {
         return jPanelMenuNavegcao;
     }
-    
+
+    public JPanelContainerCardLayout getjPanelContainerCardLayout() {
+        return jPanelContainerCardLayout;
+    }
 }

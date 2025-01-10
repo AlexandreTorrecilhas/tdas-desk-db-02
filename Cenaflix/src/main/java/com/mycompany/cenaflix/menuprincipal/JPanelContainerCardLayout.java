@@ -14,10 +14,17 @@ public class JPanelContainerCardLayout extends JPanel{
     
     private LinkedHashMap<String, JPanel> telas = new LinkedHashMap();
     private JPanelAdicionarFilme jPanelAdicionarFilme = new JPanelAdicionarFilme();
-    
+    private CardLayout layout = new CardLayout();
+
+    @Override
+    public CardLayout getLayout() {
+        return layout;
+    }
+
     public JPanelContainerCardLayout(){
         this.setJPanel();
-        
+        this.setTelas();
+        this.addElementos();
     }
     
     private void setJPanel(){
@@ -35,4 +42,9 @@ public class JPanelContainerCardLayout extends JPanel{
             this.add(tela, chave);
         }
     }
+
+    public JPanelAdicionarFilme getjPanelAdicionarFilme(){
+        return this.jPanelAdicionarFilme;
+    }
+
 }

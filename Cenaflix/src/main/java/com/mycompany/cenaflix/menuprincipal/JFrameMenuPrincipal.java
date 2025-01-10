@@ -13,7 +13,7 @@ import java.util.LinkedHashMap;
 public class JFrameMenuPrincipal extends JFrame {
     //JPanels
     JPanelMenuPrincipal jPanelMenuPrincipal = new JPanelMenuPrincipal();
-    BotaoNavegacaoControlador controlador = new BotaoNavegacaoControlador(jPanelMenuPrincipal);
+    BotaoNavegacaoControlador controlador = new BotaoNavegacaoControlador(jPanelMenuPrincipal.getjPanelContainerCardLayout());
     //Variáveis dessa classe
     Dimension tamanhoJFrame = new Dimension(900,500);
     Integer[] coordenadas = new Coordenadas(this.tamanhoJFrame).getCoordenadas();
