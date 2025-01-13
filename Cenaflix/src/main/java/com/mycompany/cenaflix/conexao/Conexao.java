@@ -8,7 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class Conexao {
-    private final String url = "jdbc:mysql:localhost:3306/cenaflix";
+    private final String url = "jdbc:mysql://localhost:3306/cenaflix";
     private final String user = "mestre";
     private final String password = "mudar@123";
     private Connection conexao;

@@ -23,7 +23,8 @@ public class JPanelAdicionarFilme extends AbsJPanelGrid {
     private LinkedHashMap<String, JButton> mapJButtons = new LinkedHashMap();
     //Arrays que servirão como chaves para os loops nos maps
     private final String[] arrLblJLabel = {"lblNome", "lblDataLancamento", "lblGenero"};
-    private final String[] arrTxtJTextField = {"txtNomeFilme", "txtDataLancamento", "txtGenero"};
+    private final String[] arrTxtJTextField = {"txtNomeFilme", "txtDataLancamento", "txtCategoria"};
+    private InserirFilmeControlador controlador;
 
     public JPanelAdicionarFilme(){
         super();
@@ -31,6 +32,7 @@ public class JPanelAdicionarFilme extends AbsJPanelGrid {
         this.setElementosMapJTextField();
         this.setElementosMapJButton();
         this.adicionarElementosJPanel();
+        this.controlador = new InserirFilmeControlador(this.mapJTextField, this.mapJButtons);
     }
 
     private void adicionarElementosJPanel(){
@@ -70,7 +72,7 @@ public class JPanelAdicionarFilme extends AbsJPanelGrid {
     private void setElementosMapJTextField(){
         this.mapJTextField.put("txtNomeFilme", addJTextField(200,20));
         this.mapJTextField.put("txtDataLancamento", addJTextField(50,20));
-        this.mapJTextField.put("txtGenero", addJTextField(200,20));
+        this.mapJTextField.put("txtCategoria", addJTextField(200,20));
 
     }
 
