@@ -1,11 +1,19 @@
 package com.mycompany.cenaflix.consultarfilme;
 
 //Pacotes Swing
+import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
-//Pacotes AWT
-import java.awt.ScrollPane;
 
 public class JPanelTabela {
-    JTable tabelaConsulta = new JTable();
-    ScrollPane scrollContainer = new ScrollPane(tabelaConsulta);
+    private final String[] colunasTabela = {"Nome do Filme", "Data de lançamento", "Categoria"};
+    private final DefaultTableModel modeloTabela = new DefaultTableModel(colunasTabela,0);
+    private JTable tabelaResultado = new JTable();
+    private JScrollPane containerTabela = new JScrollPane(tabelaResultado);
+    
+    public JPanelTabela(){}
+
+    public JTable getTabelaResultado() {
+        return tabelaResultado;
+    }
 }

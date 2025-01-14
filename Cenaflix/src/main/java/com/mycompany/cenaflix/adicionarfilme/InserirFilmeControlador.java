@@ -38,7 +38,7 @@ public class InserirFilmeControlador {
     public void btnActionListener(){
         this.mapBotoes.get("btnCadastrarFilme").addActionListener(e -> {
             if(this.validacao.verificarValores()){
-                this.filme = new FilmeModelo(this.mapJTextField.get("txtNomeFilme").getText(), this.mapJTextField.get("txtDataLancamento").getText(), this.mapJTextField.get("txtCategoria").getText());
+                this.filme = new FilmeModelo(this.mapJTextField.get("txtNomeFilme").getText().trim(), this.mapJTextField.get("txtDataLancamento").getText().trim(), this.mapJTextField.get("txtCategoria").getText().trim());
                 this.filmeDao.inserirFilme(filme);
             }
         });
