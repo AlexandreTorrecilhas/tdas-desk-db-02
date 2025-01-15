@@ -68,7 +68,7 @@ CREATE DATABASE cenaflix;
 use cenaflix;
 
 CREATE TABLE `filmes` (
-  `id` int(11) NOT NULL,
+  `id` int(11) AUTO_INCREMENT PRIMARY KEY,
   `nome` varchar(150) NOT NULL,
   `datalancamento` date NOT NULL,
   `categoria` varchar(100) NOT NULL
