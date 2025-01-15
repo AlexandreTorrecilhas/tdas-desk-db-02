@@ -17,7 +17,7 @@ class JPanelFiltros extends AbsJPanelGrid {
     private final String[] textosJLabel = {"Id Filme: ", "Nome Filme", "Categoria: ", "Data de cadastro de: ", "até: "};
     //Configuracao dos campos de filtro
     private LinkedHashMap<String, JTextField> mapCamposFiltro = new LinkedHashMap();
-    private String[] chaveDosFiltros = {"txtId", "txtNomeFilme", "txtCategoria", "txtDataInicio", "txtDataFim"};
+    private final String[] chaveDosFiltros = {"txtId", "txtNomeFilme", "txtCategoria", "txtDataInicio", "txtDataFim"};
     
     public JPanelFiltros(){
         this.setMapJLabel();

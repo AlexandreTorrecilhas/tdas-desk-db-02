@@ -9,6 +9,7 @@ class BotaoNavegacaoControlador {
 
     private final JPanelContainerCardLayout jPanelContainerCardLayout;
     private boolean visibilidadeJPanelCard;
+    private CardLayout cardLayout;
     
     public BotaoNavegacaoControlador(JPanelContainerCardLayout jPanelContainerCardLayout){
         this.jPanelContainerCardLayout = jPanelContainerCardLayout;
@@ -16,8 +17,16 @@ class BotaoNavegacaoControlador {
     }
     
     public void abrirTelaInserirFilme(){
+        this.cardLayout = (CardLayout) this.jPanelContainerCardLayout.getLayout();
+        cardLayout.show(jPanelContainerCardLayout, "jPanelAdicionarFilme");
         this.setVisibilidadeContainerCard(true);
-        this.jPanelContainerCardLayout.getLayout().show(jPanelContainerCardLayout, "JPanelAdicionarFilme");
+    }
+    
+    public void abrirTelaPesquisaFilme(){
+        
+        this.cardLayout = (CardLayout) this.jPanelContainerCardLayout.getLayout();
+        this.cardLayout.show(jPanelContainerCardLayout, "jPanelConsultarFilme");
+        this.setVisibilidadeContainerCard(true);
     }
     
     private void setVisibilidadeContainerCard(boolean visibilidade){

@@ -2,6 +2,7 @@ package com.mycompany.cenaflix.menuprincipal;
 
 //Pacotes do Projeto
 import com.mycompany.cenaflix.adicionarfilme.JPanelAdicionarFilme;
+import com.mycompany.cenaflix.consultarfilme.JPanelConsultaFilme;
 //Pacotes Swing
 import javax.swing.JPanel;
 //Pacotes AWT
@@ -13,12 +14,13 @@ import java.util.LinkedHashMap;
 public class JPanelContainerCardLayout extends JPanel{
     
     private LinkedHashMap<String, JPanel> telas = new LinkedHashMap();
-    private JPanelAdicionarFilme jPanelAdicionarFilme = new JPanelAdicionarFilme();
+    private final JPanelAdicionarFilme jPanelAdicionarFilme = new JPanelAdicionarFilme();
+    private final JPanelConsultaFilme jPanelConsultarFilme = new JPanelConsultaFilme();
     private CardLayout layout = new CardLayout();
 
     @Override
     public CardLayout getLayout() {
-        return layout;
+        return this.layout;
     }
 
     public JPanelContainerCardLayout(){
@@ -28,11 +30,12 @@ public class JPanelContainerCardLayout extends JPanel{
     }
     
     private void setJPanel(){
-        this.setLayout(new CardLayout());
+        this.setLayout(layout);
         this.setVisible(false);
     }
     
     private void setTelas(){
+        this.telas.put("jPanelConsultarFilme", this.jPanelConsultarFilme);
         this.telas.put("jPanelAdicionarFilme", this.jPanelAdicionarFilme);
     }
     
@@ -42,9 +45,5 @@ public class JPanelContainerCardLayout extends JPanel{
             JPanel tela = entry.getValue();
             this.add(tela, chave);
         }
-    }
-
-    public JPanelAdicionarFilme getjPanelAdicionarFilme(){
-        return this.jPanelAdicionarFilme;
     }
 }

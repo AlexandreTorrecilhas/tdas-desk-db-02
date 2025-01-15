@@ -24,6 +24,7 @@ public class JFrameMenuPrincipal extends JFrame {
         this.addComponentes();
         this.setMapJButton();
         this.addActionListener();
+        this.teste();
     }
     
     private void setConfiguracoes(){
@@ -37,12 +38,19 @@ public class JFrameMenuPrincipal extends JFrame {
     }
     
     private void setMapJButton(){
-        mapJButton.put("btnAdicionarFilme", this.jPanelMenuPrincipal.getJPanelMenuNavegacao().getBtnAdicionarFilme());
+        this.mapJButton.put("btnAdicionarFilme", this.jPanelMenuPrincipal.getJPanelMenuNavegacao().getBtnAdicionarFilme());
+        this.mapJButton.put("btnConsultarFilme", this.jPanelMenuPrincipal.getJPanelMenuNavegacao().getBtnConsultarFilme());
     }
     
     private void addActionListener(){
         mapJButton.get("btnAdicionarFilme").addActionListener(e ->{
             controlador.abrirTelaInserirFilme();
         });
-    }    
+    }
+
+    private void teste(){
+        mapJButton.get("btnConsultarFilme").addActionListener(e -> {
+            this.controlador.abrirTelaPesquisaFilme();
+        });
+    }
 }
