@@ -26,15 +26,15 @@ class JPanelMenuBotoes extends AbsJPanelGrid {
     private void addComponentes(){
         for(int linha = 0;linha < mapBotoes.values().toArray().length; linha++){
             for(int coluna = 0; coluna < this.chaveBotao.length; coluna++){
-                this.add(this.mapBotoes.get(this.chaveBotao[coluna]), this.getGridBagConstraints(coluna, linha));
+                this.add(this.mapBotoes.get(this.chaveBotao[coluna]), this.getGridBagConstraintsIpa(coluna, linha));
             }
         }
     }
     
     private JButton addJButton(String texto){
         JButton novoBotao = new JButton(texto);
-        novoBotao.setPreferredSize(new Dimension(30,20));
-        novoBotao.setMaximumSize(new Dimension(50,20));
+        novoBotao.setPreferredSize(new Dimension(100,30));
+        novoBotao.setMaximumSize(new Dimension(200,35));
         return novoBotao;
     }
 }

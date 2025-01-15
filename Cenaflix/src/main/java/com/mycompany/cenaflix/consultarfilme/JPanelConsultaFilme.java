@@ -14,7 +14,7 @@ public class JPanelConsultaFilme extends JPanel{
     public JPanelConsultaFilme(){
         this.setLayout(new BorderLayout());
         this.add(this.jPanelFiltros, BorderLayout.NORTH);
-        this.add(this.jPanelFiltros, BorderLayout.CENTER);
+        this.add(this.jPanelTabela, BorderLayout.CENTER);
         this.add(this.jPanelMenuBotoes, BorderLayout.SOUTH);
     }
 
