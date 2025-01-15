@@ -19,7 +19,7 @@ public class CriarFilmeValidacao {
     }
     
     private void setValidador(){
-        this.validador.put("txtNomeFilme", "^[\\w]+(\\s\\w)*$");
+        this.validador.put("txtNomeFilme", "^([\\w]|[\\w\\s\\w])+$");
         this.validador.put("txtDataLancamento", "^([0][1-9]|[1][0-9]|[2][0-9]|[3][01])[/]([0][1-9]|[1][0-2])[/][\\d]{4}$");
         this.validador.put("txtCategoria", "^([\\w]+[;]|[\\w]+[\\s][\\w]+[;])+$");
     }
