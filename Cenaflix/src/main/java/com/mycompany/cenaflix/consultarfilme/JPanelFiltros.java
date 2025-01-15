@@ -15,6 +15,7 @@ class JPanelFiltros extends AbsJPanelGrid {
     //Configuracao dos JLabel
     private final LinkedHashMap<String, JLabel> mapJLabel = new LinkedHashMap();
     private final String[] textosJLabel = {"Id Filme: ", "Nome Filme", "Categoria: ", "Data de cadastro de: ", "até: "};
+    private final Integer[] posicoesJLabel = {0,2,4,6,8};
     //Configuracao dos campos de filtro
     private LinkedHashMap<String, JTextField> mapCamposFiltro = new LinkedHashMap();
     private final String[] chaveDosFiltros = {"txtId", "txtNomeFilme", "txtCategoria", "txtDataInicio", "txtDataFim"};
@@ -38,10 +39,10 @@ class JPanelFiltros extends AbsJPanelGrid {
     }
 
     private void addComponentes(){
-        for(int linha = 0; linha < 2; linha++){
+        for(int linha = 0; linha < 1; linha++){
             for(int coluna = 0; coluna < this.textosJLabel.length; coluna++){
-                this.add(this.mapJLabel.get(this.textosJLabel[coluna]), this.getGridBagConstraints(coluna, linha));
-                this.add(this.mapCamposFiltro.get(this.chaveDosFiltros[coluna]), this.getGridBagConstraints(coluna + 1, linha));
+                this.add(this.mapJLabel.get(this.textosJLabel[coluna]), this.getGridBagConstraintsIpa(this.posicoesJLabel[coluna], linha));
+                this.add(this.mapCamposFiltro.get(this.chaveDosFiltros[coluna]), this.getGridBagConstraintsIpa((this.posicoesJLabel[coluna] + 1), linha));
             }
         }
     }
@@ -53,8 +54,8 @@ class JPanelFiltros extends AbsJPanelGrid {
     
     private JTextField addJTextField(){
         JTextField areaTexto = new JTextField();
-        areaTexto.setPreferredSize(new Dimension(20,10));
-        areaTexto.setMaximumSize(new Dimension(30,15));
+        areaTexto.setPreferredSize(new Dimension(30,20));
+        areaTexto.setMaximumSize(new Dimension(50,30));
         return areaTexto;
     }
 }
