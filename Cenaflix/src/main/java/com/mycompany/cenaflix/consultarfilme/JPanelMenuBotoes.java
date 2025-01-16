@@ -37,4 +37,8 @@ class JPanelMenuBotoes extends AbsJPanelGrid {
         novoBotao.setMaximumSize(new Dimension(200,35));
         return novoBotao;
     }
+
+    public LinkedHashMap<String, JButton> getMapBotoes(){
+        return this.mapBotoes;
+    }
 }

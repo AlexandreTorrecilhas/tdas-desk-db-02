@@ -54,8 +54,8 @@ class JPanelFiltros extends AbsJPanelGrid {
     
     private JTextField addJTextField(){
         JTextField areaTexto = new JTextField();
-        areaTexto.setPreferredSize(new Dimension(30,20));
-        areaTexto.setMaximumSize(new Dimension(50,30));
+        areaTexto.setPreferredSize(new Dimension(80,20));
+        areaTexto.setMaximumSize(new Dimension(100,30));
         return areaTexto;
     }
 }
