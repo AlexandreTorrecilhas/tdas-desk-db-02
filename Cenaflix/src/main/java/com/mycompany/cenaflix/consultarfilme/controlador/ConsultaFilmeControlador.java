@@ -2,9 +2,13 @@ package com.mycompany.cenaflix.consultarfilme.controlador;
 
 //Pacotes do Projeto
 import com.mycompany.cenaflix.consultarfilme.dao.ConsultarFilmeDao;
+import validacoes.FiltrosPesquisaValidacao;
 //Pacotes Swing
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JTextField;
+//Pacotes UTIL
+import java.util.LinkedHashMap;
 //Pacotes lang
 import java.lang.Object;
 //Pacotes SQL
@@ -14,6 +18,7 @@ import java.sql.ResultSetMetaData;
 
 public class ConsultaFilmeControlador {
 
+    private final FiltrosPesquisaValidacao validacao = new FiltrosPesquisaValidacao();
     private final ConsultarFilmeDao filmeDao = new ConsultarFilmeDao();
     private JTable tabelaResultado;
     private ResultSetMetaData metaData;
@@ -40,6 +45,12 @@ public class ConsultaFilmeControlador {
             this.filmeDao.fecharConexao();
         }catch(SQLException erroAoInserirValores){
             System.out.println("Classe: ConsultarFilmeControlador Metodo: getDezValoresIniciais" + erroAoInserirValores.getMessage());
+        }
+    }
+    
+    public void pesquisarValoresFiltrados(LinkedHashMap <String, JTextField> mapValoresFiltro){
+        if(this.validacao.verificarValores(mapValoresFiltro)){
+            this.filmeDao.pesquisarValoresDinamicos(mapValoresFiltro);
         }
     }
 }

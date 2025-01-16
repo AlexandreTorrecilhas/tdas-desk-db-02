@@ -58,4 +58,8 @@ class JPanelFiltros extends AbsJPanelGrid {
         areaTexto.setMaximumSize(new Dimension(100,30));
         return areaTexto;
     }
+
+    public LinkedHashMap<String, JTextField> getMapCamposFiltro() {
+        return mapCamposFiltro;
+    }
 }

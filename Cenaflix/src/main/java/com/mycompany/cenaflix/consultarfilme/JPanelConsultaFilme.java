@@ -16,7 +16,7 @@ public class JPanelConsultaFilme extends JPanel{
     private final JPanelTabela jPanelTabela = new JPanelTabela();
     private final JPanelMenuBotoes jPanelMenuBotoes = new JPanelMenuBotoes();
     private final ConsultaFilmeControlador controlador = new ConsultaFilmeControlador(this.jPanelTabela.getTabelaResultado());
-    private final LinkedHashMap<String, JButton> mapBotoes = this.jPanelMenuBotoes.getMapBotoes();
+    private final LinkedHashMap<String, JButton> mapBotoesPesquisar = this.jPanelMenuBotoes.getMapBotoes();
 
     public JPanelConsultaFilme(){
         this.setLayout(new BorderLayout());
@@ -24,8 +24,16 @@ public class JPanelConsultaFilme extends JPanel{
         this.add(this.jPanelTabela, BorderLayout.CENTER);
         this.add(this.jPanelMenuBotoes, BorderLayout.SOUTH);
         this.controlador.getDezValoresIniciais();
+        this.addActionListener();
     }
 
+    
+    private void addActionListener(){
+        this.mapBotoesPesquisar.get("btnPesquisar").addActionListener(e ->{
+            this.controlador.pesquisarValoresFiltrados(this.jPanelFiltros.getMapCamposFiltro());
+        });
+    }
+    
     public JPanelFiltros getjPanelFiltros() {
         return jPanelFiltros;
     }
