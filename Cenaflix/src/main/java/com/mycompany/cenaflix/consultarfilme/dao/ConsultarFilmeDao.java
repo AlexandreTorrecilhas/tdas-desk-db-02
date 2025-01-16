@@ -22,7 +22,6 @@ public class ConsultarFilmeDao {
             ResultSet resultadoPesquisa;
             this.iniciarConexao(this.selectDezPrimeirosFilmes);
             resultadoPesquisa = this.stmt.executeQuery();
-            this.fecharConexao();
             return resultadoPesquisa;
         }catch(SQLException erroAoSelecionarValor){
             System.out.println(erroAoSelecionarValor.getMessage());
@@ -40,7 +39,7 @@ public class ConsultarFilmeDao {
         }
     }
 
-    private void fecharConexao(){
+    public void fecharConexao(){
         try{
             this.conexao.close();
             this.stmt.close();

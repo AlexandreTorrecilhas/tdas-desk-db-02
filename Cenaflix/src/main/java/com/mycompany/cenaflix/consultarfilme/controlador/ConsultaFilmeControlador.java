@@ -37,8 +37,9 @@ public class ConsultaFilmeControlador {
                 }
                 this.modeloTabela.addRow(linha);
             }
+            this.filmeDao.fecharConexao();
         }catch(SQLException erroAoInserirValores){
-            System.out.println(erroAoInserirValores.getMessage());
+            System.out.println("Classe: ConsultarFilmeControlador Metodo: getDezValoresIniciais" + erroAoInserirValores.getMessage());
         }
     }
 }
