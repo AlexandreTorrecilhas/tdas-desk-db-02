@@ -5,6 +5,8 @@ import com.mycompany.cenaflix.conexao.Conexao;
 import validacoes.FiltrosPesquisaValidacao;
 //Pacotes Swing
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JTable;
 //Pacotes Util
 import java.util.Map;
 import java.util.LinkedHashMap;
@@ -29,10 +31,29 @@ public class ConsultarFilmeDao {
     private final String selectDezPrimeirosFilmes = "SELECT * FROM filmes LIMIT 10";
     private StringBuilder sqlFiltroDinamico = new StringBuilder("SELECT * FROM filmes WHERE 1 = 1 ");
     private final String[] condicoesSql = {"AND id = ? ", "AND nome = ? ", "AND categoria IN (?) ", "AND datalancamento BETWEEN ? ", "AND ?"};
+    private final String atualizar = "UPDATE filmes SET nome = ?, datalancamento = ?, categoria = ? WHERE id = ?";
     
     
     public ConsultarFilmeDao(){}
+    
+    private void iniciarConexao(String sql){
+        try{
+            this.conexao = new Conexao().getConexao();
+            this.stmt = this.conexao.prepareStatement(sql);
+        }catch(SQLException erroAoConectarBanco){
+            System.out.println(erroAoConectarBanco.getMessage());
+        }
+    }
 
+    public void fecharConexao(){
+        try{
+            this.conexao.close();
+            this.stmt.close();
+        }catch(SQLException erroAoFecharConexao){
+            System.out.println(erroAoFecharConexao.getMessage());
+        }
+    }
+    
     public ResultSet getDezPrimeirosFilmes(){
         try{
             ResultSet resultadoPesquisa;
@@ -97,23 +118,9 @@ public class ConsultarFilmeDao {
             this.setSqlFiltroDinamico();
         }
     }
-
-    private void iniciarConexao(String sql){
-        try{
-            this.conexao = new Conexao().getConexao();
-            this.stmt = this.conexao.prepareStatement(sql);
-        }catch(SQLException erroAoConectarBanco){
-            System.out.println(erroAoConectarBanco.getMessage());
-        }
-    }
-
-    public void fecharConexao(){
-        try{
-            this.conexao.close();
-            this.stmt.close();
-        }catch(SQLException erroAoFecharConexao){
-            System.out.println(erroAoFecharConexao.getMessage());
-        }
+    
+    public void atualizarValores(JTable tabelaResultado){
+        
     }
     
     public void setSqlFiltroDinamico(){

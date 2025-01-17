@@ -6,6 +6,9 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 import javax.swing.table.TableRowSorter;
+import javax.swing.event.TableModelListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.JOptionPane;
 //Pacotes AWT
 import java.awt.BorderLayout;
 
@@ -24,6 +27,16 @@ class JPanelTabela extends JPanel {
     
     private void setTabela(){
         this.tabelaResultado.setRowSorter(organizador);
+        this.modeloTabela.addTableModelListener(new TableModelListener(){
+            @Override
+            public void tableChanged(TableModelEvent e){
+                
+                if(e.getType() == TableModelEvent.UPDATE){
+                    JOptionPane.showMessageDialog(null, "Funcionou");
+                    
+                }
+            }
+        });
     }
     
     public JTable getTabelaResultado() {

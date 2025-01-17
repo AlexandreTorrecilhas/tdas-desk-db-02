@@ -23,7 +23,6 @@ public class JPanelConsultaFilme extends JPanel{
         this.add(this.jPanelFiltros, BorderLayout.NORTH);
         this.add(this.jPanelTabela, BorderLayout.CENTER);
         this.add(this.jPanelMenuBotoes, BorderLayout.SOUTH);
-        this.controlador.getDezValoresIniciais();
         this.addActionListener();
     }
 
