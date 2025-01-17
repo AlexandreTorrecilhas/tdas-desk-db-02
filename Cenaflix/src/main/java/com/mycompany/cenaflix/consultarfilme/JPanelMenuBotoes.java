@@ -21,7 +21,7 @@ class JPanelMenuBotoes extends AbsJPanelGrid {
     
     private void setMapBotoes(){
         this.mapBotoes.put("btnPesquisar", this.addJButton("Pesquisar"));
-        this.mapBotoes.put("btnAtualizar", this.addJButton("Atualizar Filmes"));
+        this.mapBotoes.put("btnAtualizar", this.addJButton("Atualizar Filme"));
     }
     
     private void addComponentes(){

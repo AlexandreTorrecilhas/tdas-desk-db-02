@@ -32,7 +32,9 @@ public class ConsultarFilmeDao {
     private StringBuilder sqlFiltroDinamico = new StringBuilder("SELECT * FROM filmes WHERE 1 = 1 ");
     private final String[] condicoesSql = {"AND id = ? ", "AND nome = ? ", "AND categoria IN (?) ", "AND datalancamento BETWEEN ? ", "AND ?"};
     private final String atualizar = "UPDATE filmes SET nome = ?, datalancamento = ?, categoria = ? WHERE id = ?";
-    
+    private DefaultTableModel modeloTabela;
+    //Objetos SQL
+    Object[] resultadoConsultado;
     
     public ConsultarFilmeDao(){}
     
@@ -120,6 +122,11 @@ public class ConsultarFilmeDao {
     }
     
     public void atualizarValores(JTable tabelaResultado){
+        this.modeloTabela = (DefaultTableModel) tabelaResultado.getModel();
+        int indiceTabela = tabelaResultado.getSelectedRow();
+        int quantidadeTabela = this.modeloTabela.getColumnCount();
+        this.resultadoConsultado = new Object[quantidadeTabela];
+        
         
     }
     

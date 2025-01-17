@@ -27,7 +27,7 @@ class JPanelTabela extends JPanel {
     
     private void setTabela(){
         this.tabelaResultado.setRowSorter(organizador);
-        this.modeloTabela.addTableModelListener(new TableModelListener(){
+        /*this.modeloTabela.addTableModelListener(new TableModelListener(){
             @Override
             public void tableChanged(TableModelEvent e){
                 
@@ -36,7 +36,7 @@ class JPanelTabela extends JPanel {
                     
                 }
             }
-        });
+        });*/
     }
     
     public JTable getTabelaResultado() {
