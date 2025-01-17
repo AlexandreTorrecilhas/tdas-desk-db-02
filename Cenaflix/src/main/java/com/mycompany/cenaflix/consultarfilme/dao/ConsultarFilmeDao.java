@@ -8,14 +8,16 @@ import javax.swing.JTextField;
 //Pacotes Util
 import java.util.Map;
 import java.util.LinkedHashMap;
+//Pacots Time
+import java.time.format.DateTimeParseException;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 //Pacotes SQL
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Date;
-
-import static java.lang.Integer.*;
 
 public class ConsultarFilmeDao {
     //Validacao
@@ -26,7 +28,7 @@ public class ConsultarFilmeDao {
     //Comandos SQL
     private final String selectDezPrimeirosFilmes = "SELECT * FROM filmes LIMIT 10";
     private StringBuilder sqlFiltroDinamico = new StringBuilder("SELECT * FROM filmes WHERE 1 = 1 ");
-    private final String[] condicoesSql = {"AND id = ? ", "AND nome LIKE ? ", "AND categoria IN (?) ", "AND datalancamento BETWEEN ? AND ?"};
+    private final String[] condicoesSql = {"AND id = ? ", "AND nome = ? ", "AND categoria IN (?) ", "AND datalancamento BETWEEN ? ", "AND ?"};
     
     
     public ConsultarFilmeDao(){}
@@ -44,22 +46,25 @@ public class ConsultarFilmeDao {
 
     }
     
-    public void pesquisarValoresDinamicos(LinkedHashMap<String, JTextField> mapJTextField){
+    public ResultSet pesquisarValoresDinamicos(LinkedHashMap<String, JTextField> mapJTextField){
 
         int contador = 0;
+        ResultSet resultadoQuery = null;
+        
         for(Map.Entry<String, JTextField> entry: mapJTextField.entrySet()){
             if(!entry.getValue().getText().isBlank()){
                 this.sqlFiltroDinamico.append(this.condicoesSql[contador]);
                 contador++;
             }
-            contador++;
+            else{
+                contador++;
+            }
         }
 
-        contador = 0;
+        contador = 1;
 
         this.iniciarConexao(this.sqlFiltroDinamico.toString());
 
-        //"", "", "", "txtDataInicio", "txtDataFim"
         try{
             if(!mapJTextField.get("txtId").getText().isBlank()){
                 this.stmt.setInt(contador, Integer.parseInt(mapJTextField.get("txtId").getText().trim()));
@@ -69,13 +74,27 @@ public class ConsultarFilmeDao {
                 this.stmt.setString(contador, mapJTextField.get("txtNomeFilme").getText().trim());
                 contador++;
             }
-            if(mapJTextField.get("txtCategoria").getText().isBlank()){
+            if(!mapJTextField.get("txtCategoria").getText().isBlank()){
                 this.stmt.setString(contador,mapJTextField.get("txtCategoria").getText().trim());
                 contador++;
             }
+            if(!mapJTextField.get("txtDataInicio").getText().isBlank()){
+                this.stmt.setDate(contador, Date.valueOf(LocalDate.parse(mapJTextField.get("txtDataInicio").getText().trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
+                contador++;
+            }
+            if(!mapJTextField.get("txtDataFim").getText().isBlank()){
+                this.stmt.setDate(contador, Date.valueOf(LocalDate.parse(mapJTextField.get("txtDataFim").getText().trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
+            }
+            
+            System.out.println(this.stmt.toString());
+            resultadoQuery = this.stmt.executeQuery();
+            return resultadoQuery;
 
-        }catch(SQLException erroAoConstruirConsultaDinamica){
+        }catch(SQLException | DateTimeParseException erroAoConstruirConsultaDinamica){
             System.out.println("Classe: ConsutarFilmeDao/Metodo: pesquisarValoresDinamicos " + erroAoConstruirConsultaDinamica.getMessage());
+            return null;
+        }finally{
+            this.setSqlFiltroDinamico();
         }
     }
 
@@ -95,5 +114,9 @@ public class ConsultarFilmeDao {
         }catch(SQLException erroAoFecharConexao){
             System.out.println(erroAoFecharConexao.getMessage());
         }
+    }
+    
+    public void setSqlFiltroDinamico(){
+        this.sqlFiltroDinamico = new StringBuilder("SELECT * FROM filmes WHERE 1 = 1 ");;
     }
 }

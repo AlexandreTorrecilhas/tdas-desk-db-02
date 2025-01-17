@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 //Pacotes UTIL
 import java.util.LinkedHashMap;
 //Pacotes lang
-import java.lang.Object;
+
 //Pacotes SQL
 import java.sql.SQLException;
 import java.sql.ResultSet;
@@ -50,7 +50,21 @@ public class ConsultaFilmeControlador {
     
     public void pesquisarValoresFiltrados(LinkedHashMap <String, JTextField> mapValoresFiltro){
         if(this.validacao.verificarValores(mapValoresFiltro)){
-            this.filmeDao.pesquisarValoresDinamicos(mapValoresFiltro);
+            try{
+                this.modeloTabela.setRowCount(0);
+                this.resultadoQuery = this.filmeDao.pesquisarValoresDinamicos(mapValoresFiltro);
+                this.metaData = resultadoQuery.getMetaData();
+                this.linha = new Object[metaData.getColumnCount()];
+                while(resultadoQuery.next()){
+                    for(int contador = 1; contador < metaData.getColumnCount(); contador++){
+                        this.linha[contador - 1] = resultadoQuery.getObject(contador);
+                    }
+                    this.modeloTabela.addRow(linha);
+                }
+                this.filmeDao.fecharConexao();
+            }catch(SQLException erroAoInserirValores){
+                System.out.println("Classe: ConsultaFilmeControlador/Método: pesquisarValoresFiltrados/Erro: " + erroAoInserirValores.getMessage());
+            }
         }
     }
 }

@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
+import javax.swing.table.TableRowSorter;
 //Pacotes AWT
 import java.awt.BorderLayout;
 
@@ -13,10 +14,16 @@ class JPanelTabela extends JPanel {
     private final DefaultTableModel modeloTabela = new DefaultTableModel(colunasTabela,0);
     private final JTable tabelaResultado = new JTable(this.modeloTabela);
     private final JScrollPane containerTabela = new JScrollPane(this.tabelaResultado);
+    private final TableRowSorter<DefaultTableModel> organizador = new TableRowSorter<>(modeloTabela);
     
     public JPanelTabela(){
         this.setLayout(new BorderLayout());
+        this.setTabela();
         this.add(this.containerTabela, BorderLayout.CENTER);
+    }
+    
+    private void setTabela(){
+        this.tabelaResultado.setRowSorter(organizador);
     }
     
     public JTable getTabelaResultado() {
