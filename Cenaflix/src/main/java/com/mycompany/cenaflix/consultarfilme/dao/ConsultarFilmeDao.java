@@ -31,10 +31,10 @@ public class ConsultarFilmeDao {
     private final String selectDezPrimeirosFilmes = "SELECT * FROM filmes LIMIT 10";
     private StringBuilder sqlFiltroDinamico = new StringBuilder("SELECT * FROM filmes WHERE 1 = 1 ");
     private final String[] condicoesSql = {"AND id = ? ", "AND nome = ? ", "AND categoria IN (?) ", "AND datalancamento BETWEEN ? ", "AND ?"};
-    private final String atualizar = "UPDATE filmes SET nome = ?, datalancamento = ?, categoria = ? WHERE id = ?";
+    private final String sqlAtualizarValores = "UPDATE filmes SET nome = ?, datalancamento = ?, categoria = ? WHERE id = ?";
     private DefaultTableModel modeloTabela;
     //Objetos SQL
-    Object[] resultadoConsultado;
+    Object[] resultadoConsulta;
     
     public ConsultarFilmeDao(){}
     
@@ -84,6 +84,8 @@ public class ConsultarFilmeDao {
             }
         }
 
+        //O contador aqui deve ser pois ele configura
+        //a posicao das fincoes set to objeto stmt
         contador = 1;
 
         this.iniciarConexao(this.sqlFiltroDinamico.toString());
@@ -110,6 +112,7 @@ public class ConsultarFilmeDao {
             }
             
             System.out.println(this.stmt.toString());
+
             resultadoQuery = this.stmt.executeQuery();
             return resultadoQuery;
 
@@ -121,13 +124,26 @@ public class ConsultarFilmeDao {
         }
     }
     
-    public void atualizarValores(JTable tabelaResultado){
-        this.modeloTabela = (DefaultTableModel) tabelaResultado.getModel();
-        int indiceTabela = tabelaResultado.getSelectedRow();
-        int quantidadeTabela = this.modeloTabela.getColumnCount();
-        this.resultadoConsultado = new Object[quantidadeTabela];
-        
-        
+    public int atualizarValores(Object resultadoConsulta[]){
+        int valoresAtualizados = 0;
+
+        try{
+            //UPDATE filmes SET nome = ?, datalancamento = ?, categoria = ? WHERE id = ?
+            this.iniciarConexao(this.sqlAtualizarValores);
+            System.out.println(resultadoConsulta[0].toString());
+            this.stmt.setString(1, resultadoConsulta[1].toString());
+            System.out.println(resultadoConsulta[1].toString());
+            this.stmt.setDate(2, Date.valueOf(resultadoConsulta[2].toString()));
+            this.stmt.setString(3, resultadoConsulta[3].toString());
+            this.stmt.setInt(4, Integer.parseInt(resultadoConsulta[0].toString()));
+            System.out.println(this.sqlAtualizarValores);
+            valoresAtualizados = this.stmt.executeUpdate();
+
+            return valoresAtualizados;
+        }catch(SQLException | DateTimeParseException erroAoAtualizarValores){
+            System.out.println("Classe: ConsultarFilmeDao/Método: atualizarValores/Erro: " + erroAoAtualizarValores.getMessage());
+            return 0;
+        }
     }
     
     public void setSqlFiltroDinamico(){

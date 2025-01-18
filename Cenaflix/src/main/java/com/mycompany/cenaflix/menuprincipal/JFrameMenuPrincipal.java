@@ -3,8 +3,7 @@ package com.mycompany.cenaflix.menuprincipal;
 //Pacotes do Projeto
 import com.mycompany.cenaflix.posicaotela.Coordenadas;
 //Pacotes Swing
-import javax.swing.JFrame;
-import javax.swing.JButton;
+import javax.swing.*;
 //Pacotes AWT
 import java.awt.Dimension;
 //Pacotes Util
@@ -46,10 +45,15 @@ public class JFrameMenuPrincipal extends JFrame {
         mapJButton.get("btnAdicionarFilme").addActionListener(e ->{
             controlador.abrirTelaInserirFilme();
         });
+
     }
 
     private void teste(){
         mapJButton.get("btnConsultarFilme").addActionListener(e -> {
+            JOptionPane.showMessageDialog(null, "<html>Para alterar um valor: " +
+                    "<br>1) Edite o valor da Célular;" +
+                    "<br>2)Pressione a tecla ou clique fora na célula;" +
+                    "<br>3)Clique em atualizar.</html>");
             this.controlador.abrirTelaPesquisaFilme();
         });
     }

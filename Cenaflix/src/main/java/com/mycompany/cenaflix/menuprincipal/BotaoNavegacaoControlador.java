@@ -3,6 +3,7 @@ package com.mycompany.cenaflix.menuprincipal;
 //Pacotes do Projeto
 import com.mycompany.cenaflix.menuprincipal.JPanelContainerCardLayout;
 //Pacotes AWT
+import javax.swing.*;
 import java.awt.CardLayout;
 
 class BotaoNavegacaoControlador {

@@ -4,9 +4,8 @@ package com.mycompany.cenaflix.consultarfilme.controlador;
 import com.mycompany.cenaflix.consultarfilme.dao.ConsultarFilmeDao;
 import validacoes.FiltrosPesquisaValidacao;
 //Pacotes Swing
-import javax.swing.JTable;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JTextField;
 //Pacotes UTIL
 import java.util.LinkedHashMap;
 //Pacotes lang
@@ -56,7 +55,7 @@ public class ConsultaFilmeControlador {
                 this.metaData = resultadoQuery.getMetaData();
                 this.linha = new Object[metaData.getColumnCount()];
                 while(resultadoQuery.next()){
-                    for(int contador = 1; contador < metaData.getColumnCount(); contador++){
+                    for(int contador = 1; contador <= metaData.getColumnCount(); contador++){
                         this.linha[contador - 1] = resultadoQuery.getObject(contador);
                     }
                     this.modeloTabela.addRow(linha);
@@ -68,5 +67,22 @@ public class ConsultaFilmeControlador {
         }
     }
     
-    
+    public void atualizarFilme(JTable tabelaResultado){
+        Object resultadoConsulta[];
+        int resultadoAtualizacao = 0;
+
+        int valoresAtualizados = 0;
+        this.modeloTabela = (DefaultTableModel) tabelaResultado.getModel();
+        int linhaTabela = tabelaResultado.getSelectedRow();
+        int quantidadeTabela = this.modeloTabela.getColumnCount();
+        resultadoConsulta = new Object[quantidadeTabela];
+
+        for(int contador = 0; contador < quantidadeTabela; contador++){
+            resultadoConsulta[contador] = tabelaResultado.getValueAt(linhaTabela, contador);
+        }
+
+        resultadoAtualizacao = this.filmeDao.atualizarValores(resultadoConsulta);
+
+        JOptionPane.showMessageDialog(null,"Linhas atualizadas: " + resultadoAtualizacao);
+    }
 }

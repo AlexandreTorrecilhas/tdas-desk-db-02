@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import java.awt.BorderLayout;
 
 class JPanelTabela extends JPanel {
-    private final String[] colunasTabela = {"Nome do Filme", "Data de lançamento", "Categoria"};
+    private final String[] colunasTabela = {"id","Nome do Filme", "Data de lançamento", "Categoria"};
     private final DefaultTableModel modeloTabela = new DefaultTableModel(colunasTabela,0);
     private final JTable tabelaResultado = new JTable(this.modeloTabela);
     private final JScrollPane containerTabela = new JScrollPane(this.tabelaResultado);
@@ -27,16 +27,16 @@ class JPanelTabela extends JPanel {
     
     private void setTabela(){
         this.tabelaResultado.setRowSorter(organizador);
-        /*this.modeloTabela.addTableModelListener(new TableModelListener(){
+        this.modeloTabela.addTableModelListener(new TableModelListener(){
             @Override
             public void tableChanged(TableModelEvent e){
                 
                 if(e.getType() == TableModelEvent.UPDATE){
-                    JOptionPane.showMessageDialog(null, "Funcionou");
+                    JOptionPane.showMessageDialog(null, "Para confirmar a mudança, clique em atualizar");
                     
                 }
             }
-        });*/
+        });
     }
     
     public JTable getTabelaResultado() {
