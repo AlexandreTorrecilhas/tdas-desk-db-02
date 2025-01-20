@@ -1,6 +1,11 @@
 package com.mycompany.cenaflix;
 
-//Pacotes do Projeto
+/*
+*
+*@author Carlos Alexandre
+*@version 1.0
+*/
+
 import com.mycompany.cenaflix.menuprincipal.JFrameMenuPrincipal;
 
 public class Cenaflix {
