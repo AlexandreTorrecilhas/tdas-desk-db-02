@@ -12,7 +12,7 @@ import java.awt.Dimension;
 
 class JPanelMenuBotoes extends AbsJPanelGrid {
     private LinkedHashMap<String, JButton> mapBotoes = new LinkedHashMap();
-    private final String[] chaveBotao = {"btnPesquisar", "btnAtualizar"};
+    private final String[] chaveBotao = {"btnPesquisar", "btnAtualizar", "btnExcluirFilme"};
     
     public JPanelMenuBotoes(){
         this.setMapBotoes();
@@ -22,6 +22,7 @@ class JPanelMenuBotoes extends AbsJPanelGrid {
     private void setMapBotoes(){
         this.mapBotoes.put("btnPesquisar", this.addJButton("Pesquisar"));
         this.mapBotoes.put("btnAtualizar", this.addJButton("Atualizar Filme"));
+        this.mapBotoes.put("btnExcluirFilme", this.addJButton("Excluir Filme"));
     }
     
     private void addComponentes(){

@@ -6,7 +6,6 @@ import validacoes.FiltrosPesquisaValidacao;
 //Pacotes Swing
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JTable;
 //Pacotes Util
 import java.util.Map;
 import java.util.LinkedHashMap;
@@ -32,6 +31,7 @@ public class ConsultarFilmeDao {
     private StringBuilder sqlFiltroDinamico = new StringBuilder("SELECT * FROM filmes WHERE 1 = 1 ");
     private final String[] condicoesSql = {"AND id = ? ", "AND nome = ? ", "AND categoria IN (?) ", "AND datalancamento BETWEEN ? ", "AND ?"};
     private final String sqlAtualizarValores = "UPDATE filmes SET nome = ?, datalancamento = ?, categoria = ? WHERE id = ?";
+    private final String sqlRemoverValores = "DELETE FROM filmes WHERE id = ?";
     private DefaultTableModel modeloTabela;
     //Objetos SQL
     Object[] resultadoConsulta;
@@ -146,7 +146,23 @@ public class ConsultarFilmeDao {
         }
     }
     
+    public int excluirFilme(int idFilme){
+        
+        int valoresAtualizados = 0;
+        
+        try{
+            this.iniciarConexao(this.sqlRemoverValores);
+            this.stmt.setInt(1, idFilme);
+            valoresAtualizados = this.stmt.executeUpdate();
+            return valoresAtualizados;
+        }catch(SQLException erroAoExcluirValor){
+            System.out.println("Classe: ConsultaFilmeDao/Método:excluirFilme/Erro: " + erroAoExcluirValor.getMessage());
+            return 0;
+        }
+        
+    }
+    
     public void setSqlFiltroDinamico(){
-        this.sqlFiltroDinamico = new StringBuilder("SELECT * FROM filmes WHERE 1 = 1 ");;
+        this.sqlFiltroDinamico = new StringBuilder("SELECT * FROM filmes WHERE 1 = 1 ");
     }
 }

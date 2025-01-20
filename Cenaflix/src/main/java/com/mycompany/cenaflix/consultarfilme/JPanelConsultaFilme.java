@@ -35,6 +35,10 @@ public class JPanelConsultaFilme extends JPanel{
         this.mapBotoesPesquisar.get("btnAtualizar").addActionListener(e -> {
            this.controlador.atualizarFilme(this.jPanelTabela.getTabelaResultado());
         });
+        
+        this.mapBotoesPesquisar.get("btnExcluirFilme").addActionListener(e -> {
+            this.controlador.excluirFilme(this.jPanelTabela.getTabelaResultado(), this.jPanelFiltros.getMapCamposFiltro());
+        });
     }
     
     public JPanelFiltros getjPanelFiltros() {
