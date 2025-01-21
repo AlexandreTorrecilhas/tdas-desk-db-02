@@ -44,6 +44,9 @@ public class ConsultarFilmeDao {
     //Objetos SQL
     Object[] resultadoConsulta;
     
+    /**
+     *
+     */
     public ConsultarFilmeDao(){}
 
     /**
@@ -63,7 +66,6 @@ public class ConsultarFilmeDao {
 
     /**
      * Fecha a conexão com o banco de dados e o statement.
-     * @throws SQLException Lançada caso ocorra uma exceção de SQL.
      */
 
     public void fecharConexao(){
@@ -75,6 +77,10 @@ public class ConsultarFilmeDao {
         }
     }
     
+    /**
+     *
+     * @return
+     */
     public ResultSet getDezPrimeirosFilmes(){
         try{
             ResultSet resultadoPesquisa;
@@ -88,6 +94,11 @@ public class ConsultarFilmeDao {
 
     }
     
+    /**
+     *
+     * @param mapJTextField
+     * @return
+     */
     public ResultSet pesquisarValoresDinamicos(LinkedHashMap<String, JTextField> mapJTextField){
 
         int contador = 0;
@@ -143,6 +154,11 @@ public class ConsultarFilmeDao {
         }
     }
     
+    /**
+     *
+     * @param resultadoConsulta
+     * @return
+     */
     public int atualizarValores(Object resultadoConsulta[]){
         int valoresAtualizados = 0;
 
@@ -165,6 +181,11 @@ public class ConsultarFilmeDao {
         }
     }
     
+    /**
+     *
+     * @param idFilme
+     * @return
+     */
     public int excluirFilme(int idFilme){
         
         int valoresAtualizados = 0;
@@ -181,6 +202,9 @@ public class ConsultarFilmeDao {
         
     }
     
+    /**
+     *
+     */
     public void setSqlFiltroDinamico(){
         this.sqlFiltroDinamico = new StringBuilder("SELECT * FROM filmes WHERE 1 = 1 ");
     }

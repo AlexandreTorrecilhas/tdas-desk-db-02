@@ -13,8 +13,16 @@ package com.mycompany.cenaflix;
 
 import com.mycompany.cenaflix.menuprincipal.JFrameMenuPrincipal;
 
+/**
+ *
+ * @author carlos.sa
+ */
 public class Cenaflix {
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         new JFrameMenuPrincipal().setVisible(true);
     }

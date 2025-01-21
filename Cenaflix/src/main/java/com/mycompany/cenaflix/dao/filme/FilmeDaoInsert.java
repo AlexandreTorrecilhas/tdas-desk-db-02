@@ -44,7 +44,6 @@ public class FilmeDaoInsert {
      * Insere um novo filme no banco de dados.
      *
      * @param filme O modelo do filme a ser inserido.
-     * @throws SQLException Lançada caso ocorra uma exceção de SQL.
      * @throws DateTimeParseException Lançada caso haja erro ao converter a data de lançamento do formato String para LocalDate.
      */
 

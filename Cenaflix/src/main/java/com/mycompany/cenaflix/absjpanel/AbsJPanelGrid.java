@@ -15,8 +15,17 @@ import java.awt.Insets;
 * uma base para esses outros JPanels implementando funcoes que retornam as GridConstraints,
 */
 
+/**
+ *
+ * @author carlos.sa
+ */
+
+
 public abstract class AbsJPanelGrid extends JPanel {
     
+    /**
+     *
+     */
     public AbsJPanelGrid(){
         this.setLayout(new GridBagLayout());
     }
@@ -28,6 +37,14 @@ public abstract class AbsJPanelGrid extends JPanel {
     * @return Está função retorna uma GridBagConstraints que será utilizada pelas classes concretas para posicionar os seus
     * componentes e o espaçamento entre eles.
     */
+
+    /**
+     *
+     * @param coluna
+     * @param linha
+     * @return
+     */
+
 
     protected GridBagConstraints getGridBagConstraints(int coluna, int linha){
         GridBagConstraints regra = new GridBagConstraints();
@@ -45,6 +62,14 @@ public abstract class AbsJPanelGrid extends JPanel {
      * componentes e o espaçamento entre eles. A diferença dessa classes é que permite que os componentes cresçam e
      * ocupem todo o espaço horizontal das células.
      */
+
+    /**
+     *
+     * @param coluna
+     * @param linha
+     * @return
+     */
+
 
     protected GridBagConstraints getGridBagConstraintsIpa(int coluna, int linha){
         GridBagConstraints regra = new GridBagConstraints();

@@ -8,6 +8,15 @@ import java.util.Map;
 import java.util.LinkedHashMap;
 import java.util.regex.Pattern;
 
+/**
+ * Classe para validação de filtros de pesquisa de filme.
+ * Esta classe verifica se os valores inseridos nos campos de filtro estão nos formatos esperados.
+ *
+ * @author (Seu Nome)
+ * @version 1.0
+ * @since 1.0
+ */
+
 public class FiltrosPesquisaValidacao {
     
     private LinkedHashMap<String, String> validador = new LinkedHashMap();
@@ -17,15 +26,31 @@ public class FiltrosPesquisaValidacao {
     private final String[] mensagensDeErro = {"Por favor, informar um ID do filme", "Por favor, informar o nome do filme", "Por favor, informar uma categoria", "Por favor, informar uma data de início",
     "Por favor, informar uma data fim"};
     
+    /**
+     * Construtor da classe FiltrosPesquisaValidacao.
+     * Inicializa os mapas e arrays utilizados para validação.
+     */
+    
     public FiltrosPesquisaValidacao(){
         this.setValidador();
     }
+    
+    /**
+     * Define as expressões regulares para validação de cada filtro.
+     */
     
     private void setValidador(){
         for(int contador = 0; contador < this.chaveDosFiltros.length; contador++){
             this.validador.put(this.chaveDosFiltros[contador], this.esprecaoRegex[contador]);
         }
     }
+    
+    /**
+     * Valida os valores dos campos de filtro de pesquisa.
+     *
+     * @param valoresParaValidar Mapa contendo os valores dos campos de filtro, onde a chave é o nome do campo e o valor é o texto do JTextField.
+     * @return {@code true} se todos os filtros forem válidos, {@code false} caso contrário.
+     */
     
     public boolean verificarValores(LinkedHashMap<String, JTextField> valoresParaValidar){
         
