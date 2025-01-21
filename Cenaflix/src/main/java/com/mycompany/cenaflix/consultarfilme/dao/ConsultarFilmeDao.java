@@ -20,6 +20,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Date;
 
+/**
+ * DAO (Data Access Object) para a consulta de filmes.
+ * Esta classe é responsável por acessar o banco de dados para realizar consultas e operações relacionadas a filmes.
+ * @author (Nome do Autor)
+ * @version 1.0
+ * @since 1.0
+ */
+
 public class ConsultarFilmeDao {
     //Validacao
     private final FiltrosPesquisaValidacao validacao = new FiltrosPesquisaValidacao();
@@ -37,7 +45,13 @@ public class ConsultarFilmeDao {
     Object[] resultadoConsulta;
     
     public ConsultarFilmeDao(){}
-    
+
+    /**
+     * Inicia uma conexão com o banco de dados para o statement especificado.
+     * @param sql A consulta SQL a ser executada.
+     * @throws SQLException Lançada caso ocorra uma exceção de SQL.
+     */
+
     private void iniciarConexao(String sql){
         try{
             this.conexao = new Conexao().getConexao();
@@ -46,6 +60,11 @@ public class ConsultarFilmeDao {
             System.out.println(erroAoConectarBanco.getMessage());
         }
     }
+
+    /**
+     * Fecha a conexão com o banco de dados e o statement.
+     * @throws SQLException Lançada caso ocorra uma exceção de SQL.
+     */
 
     public void fecharConexao(){
         try{

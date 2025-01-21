@@ -15,6 +15,14 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 
+/**
+ * Controlador para a consulta de filmes.
+ * Esta classe gerencia a interação entre a interface de usuário de consulta de filmes e o acesso aos dados.
+ * @author (Nome do Autor)
+ * @version 1.0
+ * @since 1.0
+ */
+
 public class ConsultaFilmeControlador {
 
     private final FiltrosPesquisaValidacao validacao = new FiltrosPesquisaValidacao();
@@ -25,11 +33,21 @@ public class ConsultaFilmeControlador {
     private DefaultTableModel modeloTabela;
     private Object[] linha;
 
+    /**
+     * Construtor da classe ConsultaFilmeControlador.
+     * @param tabelaResultado A tabela Swing que exibirá os resultados da consulta.
+     */
+
     public ConsultaFilmeControlador(JTable tabelaResultado){
         this.tabelaResultado = tabelaResultado;
         this.modeloTabela = (DefaultTableModel) this.tabelaResultado.getModel();
     }
-    
+
+    /**
+     * Realiza a pesquisa de filmes com base nos filtros fornecidos.
+     * @param mapValoresFiltro Um mapa contendo os valores dos filtros de pesquisa.
+     */
+
     public void pesquisarValoresFiltrados(LinkedHashMap <String, JTextField> mapValoresFiltro){
         if(this.validacao.verificarValores(mapValoresFiltro)){
             try{
@@ -49,7 +67,12 @@ public class ConsultaFilmeControlador {
             }
         }
     }
-    
+
+    /**
+     * Atualiza um filme na base de dados com base na linha selecionada na tabela.
+     * @param tabelaResultado A tabela Swing contendo os dados dos filmes.
+     */
+
     public void atualizarFilme(JTable tabelaResultado){
 
         Object resultadoConsulta[];
@@ -73,7 +96,13 @@ public class ConsultaFilmeControlador {
             JOptionPane.showMessageDialog(null,"Por favor, é necessário selecionar uma linha que você deseja atualizar");
         }
     }
-    
+
+    /**
+     * Exclui um filme da base de dados com base na linha selecionada na tabela.
+     * @param tabelaResultado A tabela Swing contendo os dados dos filmes.
+     * @param mapValoresFiltro Um mapa contendo os valores dos filtros de pesquisa (usado para atualizar a tabela após a exclusão).
+     */
+
     public void excluirFilme(JTable tabelaResultado, LinkedHashMap <String, JTextField> mapValoresFiltro){
         int idFilme = 0;
         int resultado = 0;

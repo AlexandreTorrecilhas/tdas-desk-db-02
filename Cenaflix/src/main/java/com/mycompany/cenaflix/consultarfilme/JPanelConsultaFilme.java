@@ -10,6 +10,14 @@ import java.util.LinkedHashMap;
 //Pacotes AWT
 import java.awt.BorderLayout;
 
+/**
+ * Painel principal para a consulta de filmes.
+ * Este painel organiza os demais painéis utilizados para filtrar, exibir e manipular os filmes.
+ * @author (Nome do Autor)
+ * @version 1.0
+ * @since 1.0
+ */
+
 public class JPanelConsultaFilme extends JPanel{
 
     private final JPanelFiltros jPanelFiltros = new JPanelFiltros();
@@ -20,6 +28,8 @@ public class JPanelConsultaFilme extends JPanel{
 
     public JPanelConsultaFilme(){
         this.setLayout(new BorderLayout());
+
+        // Adiciona os painéis ao layout
         this.add(this.jPanelFiltros, BorderLayout.NORTH);
         this.add(this.jPanelTabela, BorderLayout.CENTER);
         this.add(this.jPanelMenuBotoes, BorderLayout.SOUTH);
