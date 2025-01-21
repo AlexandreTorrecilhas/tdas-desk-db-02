@@ -17,6 +17,15 @@ import java.time.format.DateTimeParseException;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 
+/**
+ * DAO para inserção de filmes no banco de dados.
+ * Esta classe provê métodos para inserir novos filmes.
+ *
+ * @author (Carlos Alexandre)
+ * @version 1.0
+ * @since 1.0
+ */
+
 public class FilmeDaoInsert {
     
     private Connection conexao;
@@ -24,9 +33,21 @@ public class FilmeDaoInsert {
     private int linhasAlteradas;
     private final String inserirFilmeSql = "INSERT INTO filmes(nome, datalancamento, categoria) "
             + "VALUES(?,?,?);";
-    
+
+    /**
+     * Construtor padrão.
+     */
+
     public FilmeDaoInsert(){}
-    
+
+    /**
+     * Insere um novo filme no banco de dados.
+     *
+     * @param filme O modelo do filme a ser inserido.
+     * @throws SQLException Lançada caso ocorra uma exceção de SQL.
+     * @throws DateTimeParseException Lançada caso haja erro ao converter a data de lançamento do formato String para LocalDate.
+     */
+
     public void inserirFilme(FilmeModelo filme){
         try{
             this.abrirConexao();
@@ -42,6 +63,12 @@ public class FilmeDaoInsert {
             this.fecharConexao();
         }
     }
+
+    /**
+     * Abre a conexão com o banco de dados.
+     *
+     * @throws SQLException Lançada caso ocorra uma exceção de SQL.
+     */
     
     private void abrirConexao(){
         try{
@@ -51,7 +78,13 @@ public class FilmeDaoInsert {
             System.out.println(erroAoInserirFilme.getMessage());
         }
     }
-    
+
+    /**
+     * Fecha a conexão com o banco de dados.
+     *
+     * @throws SQLException Lançada caso ocorra uma exceção de SQL.
+     */
+
     private void fecharConexao(){
         try{
             this.conexao.close();
